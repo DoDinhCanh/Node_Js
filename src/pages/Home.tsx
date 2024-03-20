@@ -15,7 +15,7 @@ const Home = () => {
 
   const getProduct = () => {
     setProduct( {
-      name: "Laptop", price: 2000,
+      name: "Laptop", price: 200
     })
     console.log(product)
   }
@@ -27,19 +27,19 @@ const Home = () => {
       </>
     )
   }
-  const ShowProduct2 = (props:{product: TProduct}) => {
-    return (
-      <>
-        <h2>{product.name}</h2>
-        <p>{product.price}</p>
-      </>
-    )
-  }
+  // const ShowProduct2 = (props:{product: TProduct}) => {
+  //   return (
+  //     <>
+  //       <h2>{product.name}</h2>
+  //       <p>{product.price}</p>
+  //     </>
+  //   )
+  // }
   return (
     <>
     <button onClick={() =>getProduct()}>Cap nhat san pham</button>
       {ShowProduct1(product)}
-      <ShowProduct2 product={product}/>
+      {/* <ShowProduct2 product={product}/> */}
     </>
   );
 };
