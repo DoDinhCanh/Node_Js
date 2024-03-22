@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import instance from "~/apis";
-// import getAllProducts  from "~/apis/product";
+import { getALLProducts } from "~/apis/product";
 import { TProduct } from "~/interfaces/Product";
+import style from "./Product.module.scss"
+type Props = {
+  category: string
+}
 
-
-const ProductList = () => {
+const ProductList = (props: Props) => {
   const [products, setProducts] = useState<TProduct[]>([])
   useEffect(() => {  
-    // Cach 1:
-    // fetch('http://localhost:3000/products').then(res => res.json()).then(data => {setProducts(data)})
-
-    // Cach 2:
-    // (async () => {
-    //   const data = await getAllProducts();
-    //   setProducts(data)
-    // })()
-
-    // Cach 3:
     const getProducts = async () => {
       try {
-        const { data } = await instance.get('/products')
+        // const { data } = await instance.get(`/products?category=${props.category}`)
+        const { data } = await instance.get(`/products`)
         setProducts(data)
       } catch (error) {
         console.log(error)
@@ -27,15 +22,22 @@ const ProductList = () => {
     }
     getProducts()
   }, []) 
-  return<> <div>
-    <h2>San pham danh cho nam:</h2>
-    {products.map((product: TProduct) => <div key={product.id}>
-      <h3>{product.title}</h3>
+  return (
+  <div>
+  {products.map((product) => (
+    <div key={product.id} className={style.productContainer}>
+      <Link to={`/shop/${product.id}`} className={style.productLink}>
+        <h3>{product.title}</h3>
+      </Link>
       <p>{product.price}</p>
-      <img width={360} src={product.thumbnail} alt={product.title} />
+      <Link to={`/shop/${product.id}`}>
+        <img width={360} src={product.thumbnail} alt={product.title} />
+      </Link>
       <p>{product.description}</p>
-    </div>)}
-  </div>;</>
+    </div>
+  ))}
+</div>
+);
 };
 
 export default ProductList;

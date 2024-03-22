@@ -1,47 +1,18 @@
-import { type } from "os";
-import { useState } from "react";
-
+import ProductList from '~/components/ProductList'
 
 const Home = () => {
-  let productInitial = {
-    name: "Ten san pham chua cap nhat", price: 0
-  }
-  const [product, setProduct] = useState(productInitial)
-
-  type TProduct = {
-    name: String,
-    price: Number
-  }
-
-  const getProduct = () => {
-    setProduct( {
-      name: "Laptop", price: 200
-    })
-    console.log(product)
-  }
-  const ShowProduct1 = (product: TProduct) => {
-    return (
-      <>
-        <h2>{product.name}</h2>
-        <p>{product.price}</p>
-      </>
-    )
-  }
-  // const ShowProduct2 = (props:{product: TProduct}) => {
-  //   return (
-  //     <>
-  //       <h2>{product.name}</h2>
-  //       <p>{product.price}</p>
-  //     </>
-  //   )
-  // }
   return (
     <>
-    <button onClick={() =>getProduct()}>Cap nhat san pham</button>
-      {ShowProduct1(product)}
-      {/* <ShowProduct2 product={product}/> */}
+      <h2>Danh Sách Sản Phẩm</h2>
+      <ProductList category='danh-cho-nam' />
+      <ProductList category='danh-cho-nam' />
+      <ProductList category='danh-cho-nam' />
+      {/* <h2>San pham danh cho nu</h2>
+      <ProductList category='danh-cho-nu' />
+      <h2>San pham danh cho tre em</h2>
+      <ProductList category='danh-cho-tre-em' /> */}
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
